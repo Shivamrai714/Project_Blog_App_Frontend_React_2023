@@ -1,0 +1,20 @@
+body{
+    /*  
+    background-image: url("/public/image.png");
+    */
+    
+    background: #aadbfc!important;
+
+    /* just used the navbar as fixed so some top content has gone inside it */
+        padding-top: 60px;  
+      
+
+
+}
+
+
+.page-item.active .page-link{
+    background-color: #121212!important;
+    border-color: #121212!important;
+}
+

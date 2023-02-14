@@ -1,0 +1,1815 @@
+FRONTEND_REACT ____________________________________________________________________________
+
+1. Imp : First start the Springboot project. Check the respective port no. Database is connected .
+    Now in springboot main file uncomment the main code to all the admin user and categories . This is to be done once when we have created new database. Just then uncomment it.
+2 Now start React app :    npm start. 
+
+
+Designing the React application. 
+
+
+To run any react project we need   node, npm , install java & path configured  ,
+
+
+
+-Create new project use.                               -->npx-create-react-app shoppingapp
+-To install the dom for routes/navigation to pages     -->npm install react-router-dom@6  
+-To start all deped. for zar file of project           --> npm install
+-TO start the project                                  --> npm start
+-To stop the server                                    --> Ctrl + c
+
+1.To enable emmet in (autocomplete tags h1 etc ) vs code : 
+       Go to setting in VSCOde and then open the JSON file symbol at top-right corner  , and the following 2 properties and resetart it.
+        
+           "emmet.triggerExpansionOnTab": true,
+   "emmet.includeLanguages":{
+    "javascript":"javascriptreact"
+
+
+         
+2.To enable auto import statements of componets : 
+     Install the plugin on VSCode "ES7+ React/Redux/React-Native snippets"
+     Also install the pretier extension to format the code using Shift+Alt+F
+                          
+
+
+3. Either intall the ReactStrap using npm install ReactStrap command Or Here,
+  To use Bootstap in your project just import the two links from the bootstap website in the main public/index.html file.
+      - include css file in link tag of head
+           
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+          
+      - include the js file inside the body tag.
+         
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+To use bootstrap just take the content from Bootstap website and "convert the copied code from html to jsx "
+
+-Convert html code to jsx using google.. and paste it.
+
+(Only difference is that in Bootstap code we need to change its tags like className ,  htmlFor etc ,) 
+
+{but if u are using  in ReactStap now need to do any modification , its self sufficient.}
+We need to install the npm install reactstrap ,  and need to include css file in it.
+
+
+4.Using NavLink as ReactLink for Routting purpose ,  as it does not reload the whole page.
+Use in this way :  
+            <NavItem>
+              <NavLink  tag={ReactLink} to="/about"   >About</NavLink>
+            </NavItem>
+
+     
+Also need to give url to load a component in App.js file   
+   <BrowserRouter>
+   <Routes>
+
+    <Route path="/" element={<Home/>} /> 
+    <Route path="/about" element={<About/>} />
+    <Route path="/login" element={<Login/>} />
+    <Route path="/signup" element={<Signup/>} />
+
+   </Routes>
+   </BrowserRouter>
+
+
+
+
+// UNDERSTANDING OF THE React used in Blog.App
+
+NOTES By SHIVAM RAI: 
+
+1.Open the Frontend  project in vs code . Drag and drop . 
+2.Node modules - contains all dependencies .
+
+3. Install the reactstrap "npm install reactstrap"  , will be shown in package.json file and aslo will be seen in node modules.
+                          "npm install bootstrap" and add the import " import "bootstrap/dist/css/bootstrap.min.css"; " css file in App()
+
+________________________________________________
+4. TO make a component Functional Component  : 
+
+const Base=({title="welcome base page ", children})=>{
+
+return (
+     <div className="container-fluid">
+
+         <h1>This is header </h1>
+
+        {children}
+
+        <h1> This is footer </h1>    
+
+     </div>
+);
+};
+export default Base;
+
+Now we can use this component in App.js file. 
+<Base> 
+ (All things posted inside it, will be its children . ) 
+</Base>
+
+________________________________________________
+
+Routing in react :
+
+5. install the routing  , in project . Run the command in terminal.
+ 
+ --> npm intall react-router-dom@6
+
+(Make sure whatever tags , we are using are being imported. )
+
+Now use and import the BrowserRouter, Routes, Route from reacter router dom in app.js
+Now put the path to open the respective component.
+
+in App.js file use the code.
+
+      <BrowserRouter>
+        <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+                   
+        </Routes>
+      </BrowserRouter>
+
+____________________________________________________________
+
+6. Now to make the custom navbar , go to ReactStrap website, search navbar. Make customization to navbar . And copyt the source code from there
+   Create a new component  CustomNavbar and paste the code here.
+
+   Now put this navbar component , in Base page (header). So it will be loaded everytime the base component is used.
+
+
+   Now to show this navbar on every page ,  
+   Just make all the description of components eg home , signup etc inside the <Base> tag, as base page contains the navbar. 
+  
+____________________________________________________________
+
+
+7. Now to fire the particular component upon clicking the button , we can user href="/" but it reloads the whole page
+So use tag={} & to="" ,  import  use "Navlink as ReactLink" from react router dom.
+
+To avoid confusion with import of reactstrap Navlink we rename it as reactLink in the import statement .
+
+ie This NavLink is from react-router-dom , which has the alternate name as ReactLink.
+
+		 <NavLink tag={ReactLink} to="/login">
+                  Login
+                 </NavLink>
+
+now use this , with tag={ReactLink} and to="" 
+____________________________________________________________
+
+  
+8. using the useState , to define a variable and function.
+   
+    const[isOpen , setIsOpen ]= useState(false)   
+
+ie isOpen = false.  ie the collapse bar is closed. 
+   Now assign a function in the toggler button ,  to open and close the navbar.
+
+
+____________________________________________________________
+
+9. Designing the login and signup forms    
+     
+ -> Desingning the signup page.
+ -> JUST CHECKING the container Using container to check the working.
+    <Container>
+     <h1 style="{{border: '1px solid red'}}> Just checking the container on Sign up page  </h1 >
+    </Container>
+
+--> Now to create the form , we need Card -> CardBody tags -> Form  -> FormGroups
+   To use the input fields  use <Label> and <Input>tags 
+
+--> In <label> tag we use for="name"  , so it should also have the id="name" in  <Input>
+
+--> Now applying the concepts of Layout/Grids on the form . 
+ //To keep the form in the center 6 grid  :  sm means its for small and larger screens.
+
+ 
+<Row   >
+<Col sm={{ size:6 , offset:3 }}  >  
+
+// rest content of the form
+    
+</Row>
+
+
+
+--> We can also use the color="dark" , inverse ,  outline properties  , and other properties Refer from ReactStrap: Forms
+
+--> Also design the same Login component like this.
+    
+     If color of card is "dark" , then inverse properrty will make the color of texts as light.
+
+______________________________________________________________________
+
+10. Handling the form / Two way data binding of Form : 
+
+In sign up : 
+
+
+--> Now we are using the use State hook , to store the data of form.
+--> The declaration  of fun should be in camel case of variable used in hook
+     
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    about: "",
+  });
+
+// Similarly we can create another hook for the error: 
+
+
+--> Now binding the variable with the hook used . We can use the event listners in the <Input> field.
+
+   use onChange={ (e) => handleChange(e)  }
+
+// Also define this handleChange function.
+
+
+  - we can use the setData function  to bind , but not using , as useState is not supporting call back function. And asymchronous call is being made , so data is not setting and error is comming in console.log(data) :  
+    setData({...data ,  name=event.target.value })
+    So we can use the useEffect , to track the changes when our data changes
+
+   
+useEffect( () => 
+{ console.log(data)
+} ,[data] )    
+
+setData({...data ,  name=event.target.value })
+// it means that , ...data (all field will remain as it is only the name field will be update with given targert value.)
+  
+* This works , but we need to create several method to set each of the fields. 
+
+--> Now also passing the  property , from the input field from where we are calling the handleChange function. 
+   So we can use this property , and dynamically set the only changed field to the data.
+
+ie 
+// using useEffect to changes on the console.
+
+useEffect( () => {
+console.log(data);
+} , [data] ) 
+
+const handleChange=(event, property) =>
+{
+setData( {...data, [property]:event.target.value  } )
+}
+
+
+                     <Input
+                      type="text"
+                      placeholder="Enter here"
+                      id="name"
+                      onChange={(e) => handleChange(e, "name")}
+                      value={data.name}
+                      }
+                    />
+
+
+-> Make sure that , whenever calling the OnChange method the fields used 'password' etc should have same name and spellings like the fields declared in data . statehook.
+
+Now to make two way winding we are adding the value filed in the <Input>  tag of all the respective fields .
+
+ value={data.name}
+
+--> Ie you can check this by printing data in Card . 
+  Using   {JSON.stringify(data)}.  
+
+--> The data is two way binded , ie 
+    1 .if we put values in form   fields like name,pass etc The values are also updated in data statehook ,
+       2.  and If we click the reset button which call function basically sets the data statehook variable to empty , them the data of fields of form is also emptied. 
+   Hence data is two way binded.
+
+
+--> To call a particular function by clicking the button , we are using the  onClick={resetData} function.
+    
+  make the functional component of resetdata and then empty all the fields defined in data statehook
+
+
+--> Now we are making the submit from function. 
+    First of all prevent the default behaviour , otherwise the form will be submitted and its field will be emptied.0
+
+const submitForm=(event)=>{    
+event.preventDefault();
+}
+______________________________________________________________
+
+
+11. Now making the Backend SpringBoot calling  to submit form .
+
+Installing axios libaray to call to the backend api designed.
+
+install React-toastify lib to give messages upton successfull sigin etc.  Just install it and add the css file of it. 
+
+Refer google : 
+
+--> write "npm install axios"  in terminal of vsCode.
+
+--> write "npm install react-toastify" 
+
+Now making the services folder to hold files calling the backend api.
+
+-> Making the helper.js file and storing the constants in it. 
+
+ BASE_URL : http://localhost:9292
+  Server Url:  BASE_URL/api/v1/auth/register
+
+
+Base Url will be decided by the environment(testing,devlopment,production etc) used ,  port no of server.
+
+--> Create the var of myAxios using the  axios.create() function and put the baseURL inside it.
+    This variable is used to call backend function like post , get , delete etc
+
+Adding the server-calling funtions in the backend . 
+
+--> Now making the signup function and call the post fun using myAxios , and passesing data of user to it. and returning the promise in it aslo collecting the json data received from post method .
+    Also added the export prefix to fucntion ,so we can use this function extenally from other file. 
+     Using the Signup fucntion in the signup page : when we are clicking  Submit button and calling submit function  .
+
+  --> We will call this function from handlesubmit form , and pass the data in it and in .then we can use call back function to collect the json data received  it.
+  Also handling the error using catch.
+
+--> Now to solve the error of cors ploicy , adding @CrossOrigin("*") in Controller.Or when it not works  , here we are seperately defining
+  @Bean FilterRegistration 
+  the configuration in SecurityConfig class by declaring the bean of it.
+
+--> In this we can set the corsconfiguration various properties like AllowCredentials , addAllowedHeader , etc
+  BAsically here we have allowed all the * origin pattern but  in production we need to allow only the frontend port url.
+  
+
+--> If we apply and property to column of Entity , eg making email unique by @Column(unique=true) . Also delete the previous table from the database .
+
+--> To show the error message using React-toastify ,  add the css file in import statement of App.js file. Refer website to apply it.
+   Also import the {ToastContainer} from "react-toastify" 
+   Also add the <ToastContainer> in side the <BrowserRouter> in app.js file.
+
+
+--> To display error , use invalid property inside the <Input/>  and to show message use  <Form Feedback>
+
+*If error came , we will use the setError method of error varaible and put the error in errors{} , and also set val of isError as true.
+
+Now when we use the invalid property , by checking the  (null safe)? null value
+
+To apply invalid property dynamically if error is generated in error useState variable.
+
+error.errors?.response?.data?.name? true : false . 
+
+Adding the <FeedbackForm> tag . To  print the error.
+
+Similarly handling the error in each fields like password.
+_________________________________________________________________________________________________
+
+
+12. Login Feature : 
+
+--> Just go to the backend and note down the url for the login api/v1/auth/login
+--> Now create a variable using useState in login.js file and make the two way data binding of the fields
+     Just add the value = {logindetail.username}  to bind fields data to variable.
+    and  onChange function and pass a lymbda function in it to pass the field which is changing dynamically. 
+      onChange= { (e)=> handleChange(e , 'username') }
+
+-> Make the function onChange to update the values of field and keep the remaining data as it is.
+-> Also adding the handlesubmit function upon clicking the submit button.
+-> also make the reset fucntion and set the variables of loginDetail as empty.(attach it to reset button using onclick() )
+
+
+Now making the function in user-service to call the backend api using the post method.  
+
+.then()  -> it refers to the promise which can be success or error.
+
+-> Now go to the login.jsp page and make the loginUser fucntion and pass the loginDetail in its argument . So after the request to server the promise will be returned.
+   Which will be the jwt token or error which is collected in .then() 
+
+-> We can also handle the error using checking the status codes on console.
+-> And now after successfull login token will be generated in console.
+In production level it is preferred to encrypt the token then save it in local storage.
+
+_____________________________________________________________________________-
+
+ 13. Setting the token  in the local storage . (local storage not vanish if we close the tab / browser as compared to session storage. ) 
+
+--> Creating the auth folder to handle methods for the Login user. 
+    It contains method to check is user logged in  , etc and other method to set token to localstorage etc
+
+--> Desingning various function doLogin(), isLoggedin () , Logout()  etc in index.js in auth folder.
+--> We will make the change in the backend api. To also given userdetail of current user + token  . This will help to show current user in frontend . 
+  Just adding the user in the response along with the token . In authcontroller.java file
+   add user also 
+   response.setUser( this.mapper.map( (User) userDetails , UserDto.class ));    // userDto is to show the details
+ 
+This will aslo add user to the response returned in the frontend calling.   Typecasted the userDetails to user as we have directly implemetned userDetials in User class .
+To avoid showing the password on console add @Json Ignore on password  @getter method 
+      
+ 
+--> In doLogin()  we have also takent the next as the callback function , to excute some task after the successfull login may be to print data to console.(in future)
+
+--> Now we can call the doLogin function from the Login.js file handlesubmit function  to set the token & user info to the local storeage.
+
+Now type localstorage on console , or you can go to Application tab -> Storage ->  Local  Storage and choose http: ,,,,,   to see the token .
+
+--> Also afer making change in backend api . The frontend function in index.js file  getCurrentUserDetail car return the current user if user is LoggedIn
+
+______________________________________________________________________________________________
+
+14. Manageing the private Routes . (in version react-router-dom - 6)
+
+First of all create the privateroute.jsx file in components folder and create the fucntional component in it (rfce) and convert it into arrow function.
+Second create the UserDashboard.jsx file in pages/user-routes foldern .
+
+Define the path for both of the component.
+
+Now we can assess private router using   user  and to view Userdashboard inside private route use <Outlet /> privateroute.jsx file and 
+call the request at url  user/userdashboard
+
+Now we can apply the if else condition to show the userdashboard , check using the LoggedIn method of Auth ,   if user is logged in then show the dashboard.
+
+To redirect to other page we can use the  <Navigate to={"/login"}  >
+
+Similarly we can make the profileInfo component and make it as private component.
+
+
+_________________________________________________________________________________________
+
+15. FInishing Login MOdule .
+
+--> Shifting the login / signup to the right of navbar. just make the another name  <nav  navbar >  and cut paste the signup login from the above navbar 
+    To apply padding in the navbar use className="px-5"  in the <Navbar> 
+
+--> Conditional renderring on Navbar :  to Show Login / User etc 
+
+--> Now if user is Logged in we are going to show his username in Narbar top right & Logout button . 
+   & if the user is LoggedOut we have option to Signin and Register 
+
+
+--> Taking variables  using useState   define login and user varibles using userState.
+--> Define useEffect fuction , it will run as soon the component loads , aslo put the dependecy of [login] in it . ie to run again as soon as login variable changes.
+
+
+--> Now calling the requied fucntion to set the values in the variables login and user defined using the useState. 
+   setLogin(isLoggedIn())
+   setUser(getCurrentUserDetail())
+
+/* Not requiered here .
+If any error comes due to null value we can use the ? (null safe operator)
+eg. 
+  if(isLoggedIn() ) 
+{
+ return JSON.parse(localStorage.getItem("data"))?.user ;  
+}
+*/
+--> Now we are going to apply this condition using the java script . to show the content on navabar which we made to show login and signup 
+
+Using the login var , we can show the username, Logout   in navbar inside the fragment <>  </>  .  if !login then show singup and regiuster option.
+
+
+
+
+
+
+NAVIGATION :  
+
+Directly navigating to user/dashboard after login is successful and logout and useremail will be displayed on navbar.
+
+***  used inside the fucntion.used inside the fucntion.
+--> eg in Login.js file :  To naviage to other page we need to create the navigate variable from useNavigate() . Now use this var to redirect to other page.( used inside the fucntion.)
+
+*** used inside the tags 
+-->Also to navigate we can use the tag={ReactLink} to="/user/"  like this. (  used inside the tags )
+   We can also use the <Link   to="/"> for this purpose.
+
+
+
+
+______________________________________________________________________________________________
+
+
+16.Resolving the problem of Password .
+
+
+--> Problem comming due to @JsonIgnore in getPassword method. The setting password is showing error while entering password in form. 
+   So to solve this we need to use @JsonProperty in setter method of password also with @jsonIgnore on getter method..
+
+______________________________________________________________________________________________
+
+17. Post  Form for adding the Post . loading categories , etc 
+
+--> Making component Add post in components folder. and desing the form by looking the api of backend for adding the post (ie detaisl of PostDto).
+-->  Now showing the Add post componenet inside the UserDashboard component.
+
+--> now we can go to reactstrap form to make the Post form .
+    Just add the input fieds and give id , name ,type ,placeholder , className , style , etc as required.
+
+-> To apply colors to background  .  go to app.css and target the body tag . body{ background: ##eceff1!important;}
+
+--> TO visits more color option for background . Search google Materialize colors .
+
+--> Now in order to show the categories from the backend (so user can choose his post belong to which category ) . We need to call the backend api to fetch categories.
+  So create the category service in frontend to call the api using the myAxios variable.
+ 
+--> Create the method loadAllcategories and call get method of the loadallCategories.
+
+--> We are going to use useEffet to load the categories first time when the components loads. 
+ useEffect(
+        () => {
+
+            setUser(getCurrentUserDetail())
+            loadAllCategories().then((data) => {
+                console.log(data)
+                setCategories(data)
+            }).catch(error => {
+                console.log(error)
+            })
+        },
+        []
+    )
+
+--> Now we can declare the variable using useState and set the categories using the setCategories function  . Now we can loop over the array in option to dynamiicaly print them  using {jsx} map fucntion
+--> We can set the key and value in the categories for using the map function.
+
+______________________________________________________________________________________________
+
+18. Implementing Rich Text Editor in Post text box
+
+--> We are googleing  jodit-react . 
+--> npm install jodit-react in terminal .  verify in package.json file. 
+--> restart the project. npm start;
+--> Now go to add post page and import the jodit-editor from jodit-react.
+--> Make a varibale editor=useRef;
+--> Make a content var using useState(); 
+--> NOw go to content  Input field and comment out and use  <JoditEditor   and define properties likr ref etc  />
+--> Additional we can also put the config variable to put place holder etc refer google Jodit-Editor
+
+______________________________________________________________________________________________
+
+19. Complete Add Post (Submitted the post data to the backend )
+
+--> Make the two way data binding . Create a object post{ .. } for title,content ,category etc using useState() .
+-->The variable in post object should match with the backend PostDto varible for two way binding. 
+--> add the value = post.title and onChange () function in each of the <Input   > tags of various fields
+
+--> Just use the  new feature of ES6 to dynamically pass the field to update the value in fieldChange fucntion using the setPost method.
+--> Now we can make new function(contentFieldChanged) to set the two way data binding for the content of POST . because jodit editor is returning data(not event  as like title,category) in callback so making new fucntion to handle this data.
+
+--> Error is comming in typing  data in Editor because of config variable , so just go to google website JoditEditor and refer Usage  and see that config is done use the useMemo() hook not directly . So we can remove config if not want additional properites like place holder etc.
+
+--> Now need to add the submit fucntion in Form tag and on Button of Submit /add post. And define the submit fucntion.
+    We can also add validation to check thee null fields of the title, post content ,category etc.
+
+-->  Now we need to create post service.js file to access api of backend api. Here define the fucntion to createPost(postData)  and use axios to call the url.
+--> Now to fetch the user id and category id for adding the post while calling the url.
+
+Here error comes in names of fucntion createPost so just take another name of reference fucntion in import statement 
+import {createPost as doCreatePost } from "../services/post-service"
+
+Now while calling the fucntion , to call user-service createPost method use doCreatePost. 
+
+--> First of all sending the userid and category id , so for that we need to create the variables  categories and user ,  using UseState() 
+--> now in useEffect fucntion .  use setUser() fucntion of statehook and call the getCurrentUserDetails func of auth to fetch the user from localstorage. auth/index.js file 
+
+--> Now in order to access these api which include login of user eg getUser, we need token so creating the private axios varaible in  helper.js  
+   Also we need to add the interceptor to add the token to the request.
+
+--> Adding getToken() method in the index.js file. (to be used in privateaxios.interceptor.request ='Bearer ${token}')
+   Here we are going to add the header Authorization and token init .
+
+--> ERROR IS COMMING IN THE CORS POLICY DUE TO our own configuratation is not running in springboot. So just set the order to  bean.setOrder(  -110 )  to make our own authorization work. .
+
+--> If internal server error comes while adding the post in the content field . Just change the field type of content from varchar to text.
+
+
+
+______________________________________________________________________________________________
+
+20. Creating new Feed Section :  Public url to show all posts
+
+--> Make a component NewFeed . Now show this component(<Newfeed/> ) in Home component.
+--> now making the useEffect method to load all post  in newfeed.js file . (ie calling the changePage() fucntion at later )
+--> We dont need private router as url are public already . so directly using myaxios .
+--> Now defing the method get / loadAllPosts all post in the user-service component. It will fetch all the posts in json format which will be avaible in promise ie in response.data.
+--> In useEffect fucntion , we are calling the loadAllPosts method.
+--> create a var postcontent array to store posts using useState() 
+
+--> Now desing the page using container-fluid class , Row , col (size,offset)
+   Display the blog count and also display all the array containg the posts  by traversing over the posts.. 
+
+--> If error comes due to time taking in loading , just use the null safe operator(?) in it.
+       <h1>Blogs Count  ( {postContent?.totalElements} )</h1>
+
+(Pagenation is done later video)
++++++++++++++++++++++++++++++++++++++++
+To expand the whole post create the post.jsx file.
+
+--> Creating new componet  post.jsx  type: rfce in file.
+   To show the Post use Card , CardBody, etc 
+  
+--> Now passing the default post object in argument of the function with title and content .
+    Now using the map fucntion to traverse overty the array elements to show the posts . Also using the key in mapping loop. Now all post of page1 will be showed here. TO view all post we need to implemtn the pagenateion in it.
+
+--> Now to show only (0 to 30) char in content , we use the substring function and adding ... after that in Post.jsx file.
+
+
+______________________________________________________________________________________________
+
+21. Implementing the pagenation :  to show all pages posts .
+
+--> google reactstap website and search pagenation. 
+--> Now go to newfeed seaction . Import the Pagenation , Pagenataion item , Pagenation links.
+-->  declare the other variables using useState  in postContent variable  ie  , totalElements='' ,  totalPages ,     pageSize: '' ,pageNo ,  etc to implement pagenaation.
+
+--> Now we can convert / typecast   postcontent.total pages to array and then use the map function to print the index as pagenumbers . 
+  Basically passing the index in map fucntion to show the page numbers.
+   Pass key=index in PagenationItem to avoid error of unique . 
+
+--> We can use the disabled on previous button according to the condition . Similary we can disable the next button on the last page .
+--> To show the current page as active we can use  active field (index == postcontent.pageNumber ) on Pagenation Item.
+
+--> Now come to post-service.js file and pass the paramenters of pageNumber, pageSize  in the url of get function.
+
+--> Create a new function in NewFeed.jsx file ... 
+ 
+ ChangePage(pageNumber=0, pageSize=5)   these are default values.
+
+--> Now assigning this fucntion with the  PagenationItem tag and we can call onClick() ==>  changePage( index  ) 
+
+--> If error come check the url , the dynamic values pageNumber should start with ? , then pageSize etc should be seperated by the & . When dynamically passing the values in the url.
+
+--> When moving to next page , Scrolling back to top of page use .  Just use window.scroll(0,0);
+ 
+--> Now we can assing fucntion to next and previous buttons. 
+    Apply onClick and call the changePage fucntion from here. just use ++postContent.pageNumber .
+    Similarly just apply condition to the previous page.
+--> Apply the color to pagenation no. by targeting the .page-item.active .page-link  to set the background-color in app.css
+______________________________________________________________________________________________
+
+22. FIXING THE PAGENATION PROBLEM . (Next button should not be clickable at last page similar for previous)
+
+   -> Go to change page fucntion where we are clicking next button ,  just change ++ to pageNumber+1. 
+  -> Now we will apply the condition in Change page function to return if we are on last page and nextPage is > PostPageNumber 
+      if (pageNumber > postContent.pageNumber && postContent.lastPage) {
+            return
+        }
+  - If postcontent.totalpage is : 3 
+  - then postcontent.pageNumber is like  0,1,2 
+
+// here pageNumber is next page requested by appling pagenation .(index)
+// postcontent.pageNumber represent the page no of post requeseted from  backend . 
+
+
+  *  When we implement the Infinite Scroll in future video . we will update the currrent page again and again so that useEffect load the posts.
+
+So in case we have page requested more than the pageno that post contain in backend it will return the control
+--> Similar condition apply for previous . To stop previous from loading page , if pageNumber requeseted by 1-pageNumber  is not present in page no. of backend post fetched.
+
+In order to show the number on the page we make use of map fucntion . First convert totalPage to arraytype . then mapping over its index-elements  (0,1,..) to display number.
+Now attach the onClick event to call the changePage fucntion with each of index. "Other value pageSize=5" will be passed as default from the fucntion parameter.
+
+    [...Array(postContent.totalPages)].map((item, index) => (
+
+
+                                    <PaginationItem onClick={() => changePage(index)}    active={index == postContent.pageNumber} key={index}>
+                                        <PaginationLink>
+
+                                            {index + 1}
+
+                                        </PaginationLink>
+                                    </PaginationItem>
+
+                                                            ))      
+
+
+
+
+Problem 2 
+--> Now to solve the error , if html is showing  like in Post <p>....</p> . 
+   WE can use dangerouslySetInnerHTML={{__html:post.content}} inside the CardText
+   <CardText  .  ..............   >
+
+
+
+NOW WE WILL CREATE THE CARD  /  COMPONENT to show the POST on the New Feed Page.
+
+
+
+
+______________________________________________________________________________________________
+
+23.  Complete Blog Post : "  DISPLAY POST "  Expand the Post on clicking read more button.
+
+-->  create component PostPage.jsx to show full post . Create a fucntional component. and export default PostPage.
+--> Do routing in App.js file , its public page so create outside the private route. Give path as "/post" and element as {<PostPage>}
+
+--> Now giving the link to Read More button to access the Post .
+ Use the <Link   to="/post" > to redirect to other url. Also apply the classname to show it as button.
+
+--> To load the particular post , we are dynamically passing the id of post to load a particular post.
+     <Route path="/posts/:postId"  element={<PostPage />}  >
+Now passing this postId from the Post.jsx file.  
+      - In readMore Link tag , use  to={ '/posts/'+ post.postId }
+Since we are directly passing the full post from the NewFeed page.  post.postId will be availabe there.
+
+
+--> Collecting the post_id from the url . using useParams hook.
+  Go to the pagepost.jsx file and fetch the postId from the url using the useParams.
+
+-->  Now desing the basic page to show the post . using Row, col , etc .
+--> Making the fucntion in the post-service.js file to load the post of particular postid. And defining the url to access the get api .
+
+--> In PostPage component we have fetch the postId , so we can use the useEffect hook and call the loadPost(postid) function to load the post when the component loads and no dependecy required in this hook so [] it load one time.
+    Also define a variable post using useState to collect the data from the promise of loadPost fucntion and set it to post varible using setPost method.
+
+
+--> Now we can desing the page to show user of Post , date and content etc.
+    Make sure to show the page only when post exits so use   (post) && (  .. . .. )
+--> To show the date creating. fucntion printdate() fucntion. and put date using various formatter like to LocalString
+-->  Also refer to backend to check the url for the uploading of the image and serviing it.
+
+--> Now fetching the image present in Post using the image tag. providing the url in src={BASE_URL+"/post/image/'+post.imageName} alt="no image present"
+    - Also setting the others field like className = "img-container mt-3 container text-center "  etc .
+    - Also can set style={ {max-width:'50%' } } 
+    -To keep image center use className=" container text-center "
+
+--> Now create another CardText and set dangerouslySetInnerHtml to show the content of the post.
+
+--> To show Category to which this post belongs use <CardText ><span className="text-muted"> {post.category.categoryTitle} </span> </CardText >///
+
+--> To keep the default image , just google pixel.com and download a default.png image from there and save it to images folder.
+    
+--> We can add divider , after showing the categoryTitle and give the style={{width:'100%' , height: 1px , background:#e2e2e2 }} 
+    We can also attach the link at the title shown after the Home page.
+
+--> Now to sort according to the date wise and in latest post to the date (descending order ) just pass it in paramenter in url in user-service  using the & operator
+-->
+
+______________________________________________________________________________________________
+
+24. Building the Comments section .
+
+
+--> Since comments in our project are less in numbers so we are fetching / showing the comment avaiable in the json data of the post (refer console) .
+   But when live website large amount of comments are generated then we need to make the sepearte api for fetching the comments.
+
+--> Now go to the PostPage.jsx file and show the comments below the post.
+  	 So create another <Row> and give grids size for Col md( > medium) screens.
+         Now if post exits try to loop over all the commenst using the map fucntion and display them.
+
+-->  Now create the input field for the user to comment . just copy the same card and make changes to add a button  to submit comment.
+  
+--> To send this comment in the database we need to call the backend api. So create the local variable comment using useState.
+    Now do two way data binding with the comment field.
+   -Assign the onChange fucntion directly   set the comment using fucntion of useState ie setComment( content = event.targer.value)
+   -also set the value field with {value=comment.content}
+
+--> Now we need to call backend api so ideal way is to make the comment service and then call the backend api of the server . 
+BUT here we are directly writing the comment url calling in the post-service.js file.
+
+--> So create the createComment method to call the backend API using the privateAxios.post method. (comment obj and postId are taken in arguments)
+
+--> Now just create fucntion submitComment(but submitPost is created byMis ) and attach it to submit button oncClick event.
+   Now from this fucntion we need to call the method of the post-service.jsx file  createComment() and pass the comment object with post Id ,  which baciscally call the backend api.
+
+--> Now in submitPost() / SubmitComment method
+   -First check the user is loggedIn 
+   - THen call the backend api func createComment (comment , post.postId)
+   -And if promise is sucess , then set the data in post page. And empty the comment field .
+
+---- TO LOAD THE COMMENT ON THE SPOT .
+
+To avoid the reloading problem we are directyl setting the comments obj of the post object using setPost use State fucntion. 
+
+   setPost({
+                ...post,
+                comments:[...post.comments,data.data]
+            })
+
+   --> ...post.comment means its create the copy of post object comment , only update content field so in promise content is present in success(data) the data.data field.
+
+
+--> Just simplicy use IsLoggedIn function to allowed comment only when the user is logged In.
+
+
+TO ALSO SHOW THE USER INFORMATION IN THE comments section we need to modify the comment entity also need to store the user information in it. 
+
+WILL DO IT LATER .
+______________________________________________________________________________________________
+
+
+
+
+______________________________________________________________________________________________
+
+25.  INFINITE SCROLL Module.
+
+-->  Comment out the pagenation Module in new Feed Page.
+--> Need to get the library from Google.Search Infinite-Scroll REact js. 
+
+--> Install npm install react-infinite-scroll-component
+--> Now use Infinite Scroll tag and define the fucntion as mentioned in website.(Refer video)
+
+--> Now just put the code content of mapping over the posts inside the InfiniteScroll component.
+--> Add the paramenter like lenght , next , hasMore , end Message  etc
+--> Create fucntion ChangePageInfinite to run when the next page is requested by the infinite Scroll.
+
+A chagne we need to do in loadAllPosts .
+We need to setPostContent in concatination manner. 
+We need to create Copy of current post array and concat a new copy of requested posts array in it.
+
+   
+This we have done , so that previous array of posts do not vanish and all posts pages are shown together in infinite way.
+   
+          setPostContent({
+                content: [...postContent.content, ...data.content],
+                totalPages: data.totalPages,
+                totalElements: data.totalElements,
+                pageSize: data.pageSize,
+                lastPage: data.lastPage,
+                pageNumber: data.pageNumber
+            })
+
+
+-Now declare currentPage variable using useState; 
+-Now as soon the hasMore field of infiniteScroll is check it will execute the changePageInfinite fucntion. 
+-Here we will again change the currentPage+1 using setCurrentPAge fun. 
+-Since useEffect is dependent on currentPage so it will call the load all post with current page number. 
+-Similary the hasMore is again checked .,..and process continues to display the Infinite Scroll Page.
+
+
+______________________________________________________________________________________________
+
+26.  Context API in react.  : Global State to share props in components 
+
+
+--> Why  we have used ContextApi: Problem:
+
+-Generally we use props to pass data from one component to another compoent.
+-Context api provides a way to pass data through component tree (to passs data from root level to deeper level ) 
+
+:: Concept is that we crate the Global state of variable and now its accesssible to all the components easily (Same work is done by Redux in large projects )
+
+DEFINATION AND USAGE ::
+
+1. Create Context      : using the function , can be created any number of times.
+	context = createContext(null)
+           It contains Providers , Consumers
+
+2.Wrap our components in Provider tags
+  
+	<context.Provider value={user}>
+ 	children
+	</context.Provider>
+
+3. Now children can consume this : Consume the value with the help of consumer
+    Here value will containes the props passed in provider ie user or null if nothing is passed.  
+
+	<context.consumer>
+              {
+                (value)==>{  <div> {value.name} </div>  }
+	      
+	      }
+	<context.consumer>
+
+3.b  Another method to consume the providers value is to use the contexthook
+
+
+IMPLEMENTAION IN PROJECT :  :::
+
+--> Create the context folder in src . Now create a file userContext.js  
+    1. Create the userContext here.
+--> 2.Now make the UserProvider component. and pass the children in argument.
+  
+   ( So it is basically like the Base component where we have given navbar  and all other components are described inside the Base component .)
+
+--> define the user object using the use State to be used in provider. (actually will be passed dynamically )    
+--> Now will write the inner condition in UserProvider component. ie write 
+	<userContext.Provider value={user}>
+             {children}
+         </userContext>
+
+--> 3. Now next step is to wrap the content inside the <UserProvider> : 
+   So go to the App.js file and cut and paste whole content insdie the  <UserProvider > ..... </UserProvider>
+
+-->4. Now we are free to use the data in Provider in any component.
+  Just use the <userContext.Consumer> tags and write the javaScript inside it.
+  All the details of the user are availble .
+
+"This is implemented in About.jsx page  "   (as content in about page is less )
+ 
+
+--> The ADVANTAGE OF using the userContext is that the user object is globally availabe and we can access it using userContext.consumer tag. No need to again and again pass it in props to share it varioius components
+
+------------------
+
+--> ANOTHER WAY TO USE THE USERCONTEXT : in PRofileInfo.jsx page.
+
+-Just use the useContext hook and assing the value to the local variable .(done in ProfileInfo.jsx page)
+
+THE main fucntion is that we can make use of useEffect fucntion to load the user details from the localstorage using getCurrentUserDetails and make other functions. 
+
+
+______________________________________________________________________________________________
+
+27. Image Uplopading Module in React . 
+
+
+--> Create the File Input field in AddPost.jsx file. Add the Label  , onChange fields  (multiple to add choose multiple files )
+--> Now create a var image using UseState hook .  
+--> create the seperate method to handleFileChagne fucntion which is fired upon choosing the file in Input field.
+--> now this funciton will give the file array in the callback event. So to console the log file name choose the event.targer.files[0]   ie selec the 1 file of array present in console .
+--> Now creating the seperate service to upload the file and call the backend api
+
+--> Open Post-service.js and make a fucntion uploadPostImage
+--> If we refer to the backend Api , the image is send in form of Form data 
+    So create a variable image using useState .
+    Also assing a fucntion onChange={handelFileChange}
+
+--> Create handelefileChange fucntion and our image will be present in event.targert.files[0] . So we need to call the setter method of setImage to set data in useState.
+--> Create a  fucntion ( uploadPostImage ) in frontend post-service.js file. 
+
+--> create formData variable object. And append the key="image" and value in the formData
+
+--> Now we are going to use the PrivateAxios object  and using post method and url sending the image in the form of formData . 
+
+Hence we are calling the request to the url /post/image/upload/${postId} and passing the image as arguament in post function in type : formData 
+
+
+--> Now we are going to call the uploadPostImage method and  passing image, and data.postId in it .
+   then in call back we will show Image is uploaded or error if any issue is comming .
+
+--> ALso we are going to add the content type header in  uploadPostImage fucntion in post(   . )
+    We will pass the header object and give the content-Type as multipart/form-data.
+
+______________________________________________________________________________________________
+
+
+28. Filtering blogs wrt :  CATEGORIES  :
+
+
+--> First of all desinging the Categories in the left side of page
+--> Create CategorySideMenu component  and make the fucntional component.
+--> Now restructuring the Home Component  into two colums to show categories on left and New feed on the right side.
+
+--> Make a <container> block and use <Row> <col  > inside it to desing the Home page.
+
+--> NOw desing the CategorySideMenu page  to show the categories on left side of Home page.
+--> Declare the categories variable using useState to store the categories loaded from the backend.
+
+
+--> Now make ue useEffect hook , which run on the start of component.
+    Call the loadAllCategories() fucntion and then set these into the local categores array of useState using the setCategories(...[data])    ; ...[data]  refers to copying the the array data then saving in the categories object.
+
+-->  Use the ListGroupItem tag to display the categories . Now looping over the categories variable using map function. 
+      We need to also pass the key as index to uniquly iterate over the categories[].
+
+-->  Now we can make the categories as clickable :  by adding the action = {true} on <ListGroupItem>
+    
+: TO NAVIGATE to the other pages  in the tags :  use the    tag={Link} to="/"
+
+ 
+--> When any category label is clicked we redirect to its page using tag={Link} to={ "/categories/"+ cat.categoryId }
+
+
+--> Now create the Categories.jsx component in pages . This is created to load the post of Specific categories.
+
+   And give its Route - path in app.js file 
+   This will be public path Route "categories/:categoryId"  element={<Categories /> }
+
+--> Now desing the category component. 
+   Enclose  the Base component in it.
+   
+--> Now since upon clicking the label of categories in Home page , we are redirecting to the categories component and categoryId is sent in the url.
+--> Fetching the categoryId from url using useParams
+
+ const {categorYId}=useParams() 
+
+// Now showing the specific posts of a category. In category Component.
+
+-->  So just copy - paste the side bar  As <CategorySideMenu />
+
+--> Now Look Swagger configration / Backend api to load the posts of specific category.
+
+--> Now making a fucntion in post-service to call the backend api to fetch post of specific category. loadPostCategoryWise(categoryId)  
+--> Use privateAxios to call the method loadPostCategoryWise()  with get Request on url   '/category/${categoryId/posts}'
+
+--> Now comeback to category Component , and in useEffect hook call this method with categoryId .
+  now when the promise of this fucntion is resolved .Then we will load the json data returned into local variable posts created using useState by calling its setPosts fucntion. Otherwise if error comes in resolving promise then display error on console.
+
+--> Now our post[] contains the data then map over the array variable.
+  And for each of the entity of map with index, call the Post component to display the post. 
+
+* While calling the API of load the post of Specific category . we have not applied the pagenation , nor any sorting method.So posts are shown randomly order.
+
+______________________________________________________________________________________________
+
+
+29.   Delete the Post : 
+
+{
+# First we will show the Posts of login user in main pain below the Add new Post Form .
+
+--> We will create a function in the post-service loadPostsUserWise(userId)
+
+Now go to UserDashboard Page.  : 
+Here we are showing the AddPost component to display form for adding new post.
+
+And below this we will display all list of posts , created by user.
+
+-->  WE will create the variable user, posts using useState.
+--> In useEffect hook we will call fucntion to loadpostUserWise and the using the setPosts method of useState save the copy of promise (.then(data ) ) in local posts variable.
+
+--> Now we will loop through  the post using map and unique and return the jsx Posts components from it.
+
+}
+
+# NOW implementing the Delete functionality.
+
+--> now go to Post component.
+--> create the user var using the useState. and in useEffect( ()=>{} , [dependecy] ) call the setUser(getCurrentUser).
+    Also declare the isloggedIn var using useState and call the fucntion to check the loggedIn user in useEffect.
+
+
+--> Now we add the delete button here in Post.jsx file after the ReadMore button..
+--> Now we apply the conditional rendering in the delete button . To show it only when 
+    User is LoggedIn  && user is not null  && user.id===post.user.id   otherwise if cond is false show ''
+
+--> Now in delete button we will add the onClick event and call the deletPost method.
+
+Props usage:    
+Now since deltePost is method of UserDashboard component. So its passed in form of props from there .So it must be collected in fucntion arguemtn in Post.jsx component.
+
+-->This is how the method deletepost defined in UserDashboard component is passed as props to Post component.
+
+ <Post post={post} deletePost={deletePost} key={index} />
+
+--> Also while making the deltePost method look the backend api and desing a function in post-service.js file to delete the post of specific post Id.
+
+-->  Now after the delete fucntion we will filter the rest set of post to show only active posts.
+
+--> To show the updated list of posts after the delte function . We just call the loadAllpost method again after the detetePostService call is made  (but here extra fucntion is called again so use below method to filter )
+    
+       Or
+
+-->  EFFICIENT we can also filter out the post[]  to remove the deleted post.
+     Ie the post which is to be delted is compared with posts[] and where id mismatch so it will be filtered out. 
+     And remaining post are collected in newPostContent. ANd then we can call the setPostContent method to set updated data .
+
+--> Similary to show this delete button . Apply the whole concept . Into the NewFeed component.
+   That is copy the deletePost method and paste in NewFeed . Also pass the delete post in prop while showing the PostComponent
+
+--> Just apply the same concept on Category Component (Which shows post category wise) as well. Define deltePost method and pass it as prop while calling the Post component .
+
+
+______________________________________________________________________________________________
+
+
+30. Resolving Login Bugg :  USING the userContext : Manage Global State for user and login 
+
+--> The issue is comming that , when we logout the currnet user. The delete button are not going off.
+
+--> TO solve this we are going to use  userContext in this.
+--> Just go to UserProvider component.
+   And take the variable of user  using the useState and take two property in it data: {} and login:false 
+    
+   From here as we are having return statement (  <usercontext.Provider value ={user,setUSer } > ....... )  also pass the user, setUser in values{} , so it can be used gloablay to set the state of user.   
+
+--> Now we are going to manage the global state for the user and its login status.
+--> So as we are login , we are going to update the global state.
+   For this take the userContextData var in Login.js file. and set it with usercontext obj defind in step 1 (Old video of UserContext api in react).
+   
+     const userContextData = userContext(usercontext);
+ 
+    
+   
+--> Now when call doLogin method in Login.js file . Just update the global userContext var
+
+     userContext.setUser(
+     {
+    data:user,  login: true,
+       }
+     );
+
+
+--> Now when ever we are clicking the Logout button , we will update the global state of userContext.
+    Just declare the variable of userContext in component where you want to access this.
+--> And on clicking the Logout ,
+   just call  
+  	userContext.setUser( 
+            data:null,
+ 		login:false,		
+	 );
+
+
+-->  Now to see the effect : 
+    Just go to page where we are showing the detele button . Just change the conditional rendering condition of detele button to check LoggedIn user useing this way.
+
+    1.Declare the variable of const userContextData =  useContext( userContext );
+    2. Then call the function setUser using it.
+       UserContextData.user.login  && (  .. . . . .. . . )
+
+--> Similary we can use the userContext  to access the user data and its login status on About and Services page . 
+    Just refer to console , to check how data is comming.  Object  -> user ->data ->  user -> name  
+
+Make sure that in React ... most error comes as null values are comming in them . So make sure to use/print variable by check then non null before using  && conditions. 
+
+
+______________________________________________________________________________________________
+
+31.   Update the Blog Post 
+
+--> Go to the post page . Now we need to show the update button to the logged In user. 
+   So just copy the delete button content and change it to delete accordingly.
+
+--> SOLVE REFRESH ERROR :::::::::::
+
+ Now an ERROR is comming . That  is when we refresh the page the delete and update buttons are vanishing.
+   This is beacuse as we refresh , the initial values are set  into user and login variable as configured in UserProvider.jsx component.
+
+So to solve this use the useEffect hook   , just load the user and login variable with the data from the local storage.
+
+useEffect( ()=> {
+   setUser ( {
+         data : getCurrrentUserDetails ,
+         login : isLoggedIn() 
+})
+}, [])
+
+
+--> Now to update the blog post , we need to create the update component . in pages folder.
+    Also define the url : inside the /user Route   (in Private Route ).
+    <Route path ="update-blog/: blogId"  element={<UpdateBlog />}>  
+  
+
+--> It will be same html form that we have used in creating post with some changes : Done in updateHtml function . 
+
+
+--> Now in delete button in Post.jsx file  :  -------- use  the redirect link.
+   <Button tag={Link} to={'/user/update-blog/${post.postId}'}  >      
+
+# make use the Link is imported from React - router dom . (Here on live project we will make sure , that id generated are random and complex   ..   so that 1 loggedIn user can't guess the update page of other post.  )
+
+--> Now in UpdateBlog component. 
+
+  -We need to fetch the id of the blog from the url , using useParams
+  -Decalre the var Object to fetch LoggedIn user details from the useContext   , global state variable.
+  -Also declare the navigate variable.
+  -Also declare the var posts using useState to store the data of the post.
+
+
+--> Now in useEffect hook , just load the blog post from the backend using the loadPost method  of post-service.js file
+     And in promise .then(data)   we will get the data as success , So setting the copy of data ...data into the post variable using setPost method.
+
+--> Now setting up the additional security check to navigate user to home page , if  entered the id of others post to access the update page then you will be redirected back to home page.
+    (Can be checked by adding random id in url of update page url )
+
+   Make another useEffect with post as dependency . So this hook will work on start of the updateBlog component and as soon as there is any change in post variable of useState then also this component works.
+ie 
+ useEffect( () => {
+   if(posts)
+            {  if(post.user.id != object.user.data.id )
+                   { toast.error("This is not the post of logged In user.  . ")\
+                       navigate("/");
+                    }    
+            } 
+       }  )
+
+
+--> now make the updateHtml function and return the jsx (copy paste html form of  post.jsx file )
+--> Make sure to make suitable changes like add the import statements of specfic copied components. eg Jodit Editor , Card, etc 
+
+-  declare the variable of categories , then load the categories in useEffect hook.
+-  
+
+--> Now we can call this newly desingned fucntion updateHtml function from the return statement of UpdateBlog component. 
+    <Base>
+<Container>
+          {updateHtml()}
+</Container>
+    <Base>
+
+--> Now to show the prefilled content of the post we can use the binding , using the value attribute and bind it to the post data .
+  eg use   value = {post.content }  in <joditEditor>  tag 
+           value = {post.category.cateogryId}  in category field
+
+--> Also we need to do the two way data binding here. So data is updated in post local variable also , as soon as the change take place in field of form.
+    Just use the OnChagne field in <Input> tags and bind it with fucntion handleChange( event , fieldName('title') )
+
+  const handleChange=( event , fieldName )=>
+  { 
+   setPost ( { ...post ,
+         [fieldName]:event.target.value
+         })
+  }
+
+ - We have taken the additional variable categoryId = data.category.categoryId  in loadPost method so we can direclty use this to do two way data binding. .
+ Now we can choose value = {post.categoryId}
+  ***But when sending data to the post-service for calling the update api , we need to first set this updated categoryId in the categoryObject
+
+-->  Now to bind the data of content , we can directy call the setPost method as Jodit editor onChange method directly give the field , not the event as in other case.
+     onChange={newContent => setPosts( {...posts, content : newContent })}
+ 
+*******  We can aslo print the data of Post using the { JSON.stringfy(post) } before starting of Card in return (  ...  ) of updateBlog.jsx   ,  to see chagne in field as we are update category, titel post , etc 
+
+
+
+--> Now we need to  call the backend api to submit the updated data to the backend .
+  So desingning the updateMethod in the post-service.js .
+
+--> export fucntion updatePost(post,postId)
+    ( 
+   return privaetAxios.put('/post/${postId}' ,post).then( (resp) => resp.data )
+   )
+
+
+--> Now comeback to the updateBlog component and assign a fun to onSubmit fun of updateForm 
+  ^***
+   Create the updatePost method which is fired on submitteing the update Form
+
+we will call the doupdatePost Service method with  ...post (copy of post data) , updated cateogry object(of new Cat id ) and post Id like below 
+-Also we will also change the name of service method updatePost as doUpdate post in the import Statements . (As both fucntions have the same name )
+
+
+
+  const updatePost = (event) => {
+        event.preventDefault()
+        console.log(post)
+        doUpdatePost({ ...post, category: { categoryId: post.categoryId } }, post.postId)
+            .then(res => {
+                console.log(res)
+                toast.success("Post updated")
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error("Error in upading post")
+            })
+
+    }
+
+ 
+
+
+--> There was problem creating in updating the category of the post.
+ THIS IS BECASUSE WE HAVE NOT created the updating category functioinaliy in backend : Although we are sending the updaated category from frontend , but in backend no process related to category updatation,
+ 
+So Go to BACKEND  PostController nad in updatePost fucntion . 
+ -Since postDto contains the data of post sent from the frontend.So using this we are fetching the update catetgoryId and setting it in post object.
+
+Category category = this.categoryRepo.findById(postDto.getCategory().getCategoryId() ).get() ;
+post.setCategory(category);
+
+
+*If u face error regarding to Clicking the update button and pop up come that this is not you post. so this is because we have not correctly set the data 
+
+While setting the user from the UserProvider component . we have set the order like
+ Object -> user -> data -> (getCurrentUserdetails )   //directly user is set .
+
+While in  Login.js  when we loggedIn we have set the data with full data (token, user)  . So correct this mistake just set only the user part in data variable of userContextData 
+
+userContextData.setUser(
+{
+data:data.user,
+login : true ,
+}
+)
+
+______________________________________________________________________________________________
+
+32. Build User Profile : Showing Profile page of Current user.
+
+--> Not use basic  Approch 1 is to show the data directly from the local Storage .
+      --> just use userContext concept to show the user Details like this 
+          const object= useContext(userContext)
+           return (  <Base> <h1> Welcome {object.user.data.name} </h1> </Base> )         
+ 
+ ________________________        
+
+==> But USING approach 2 .  here we are calling api to fetch the data and then display.
+
+
+--> Firstly we are binding the userId in the url as we click the Profile Info on navbar.
+   ie using the tag={ReactLink} and in to={'/user/profile-info/${user.id}' }
+
+--> Also updating the route path in App.js file to show the profile-info/:usedId in url 
+
+--> Now we can use useParams to fetch the userId from the url  local variable.
+   const {userId}= useParams();
+
+--> NOw create a fucntion in user-service to fetch the user with given Id .
+   Create a getUser=(userId)=>{}   fun  with get request and myAxios object to given url "BASE_URL/user/userId"
+
+--> Now we can use this user-service method in Profile-info component.
+   
+--> Declare the user var using useState to save the fetched user from the user-service backend call.
+   Just use the useEffect( ()=>{} , [] ) to call the method of userService to load the user and then call  setUser()   and output the user data on console as we received the data in response in .then(data)....   .
+
+-->  Now we can desing the basic Structure in tablular format to show the User Informateion.
+
+--> Just create the userView func with physical stucture 
+
+
+--> Then call the fucntion ,  from the return jsx  () of ProfileInfo component.
+
+--> Refer ReactStrap table google it : How to use it.      
+
+--> Shortcut :  (SHIFT + ALT + DOWN )  to copy the selected content below.
+
+-To display the role of user , Since role is [] , we can use the map fucntion to traverse over it and display role in span tag.
+
+
+______________________________________________________________________________________________
+
+
+33. Making Reusable user Profile :  
+ 
+The idea is that making the Show profile as general component. ie it can show profile of any user not only the current logged in user.
+This can be done by making it general componetn and passing the user object in props so. it will be reusable.
+
+
+--> Crate a new component ViewUserProfile component .
+--> Shortcurt  rfcea      to create the arrow fucntion component.
+
+Now just cut paste the Card Component desinged in userView function and pasted in ViewUserProfile component.
+
+--> so now if we want to display the info of current user from ProfileInfo componet.\
+   We need to use this ViewUserProfile component and need to pass the user object in props . 
+
+_______________________________
+
+--> Now show the updateProfile button on conditional rendering.
+ 
+--  Just declare the     currentUser , login variables using the useState hook 
+-- And using useEffect fucntion  , set the CurrentUser(getCurrentUserDetail()) and setLogin(isLoggedIn())  status 
+
+-- Now we will show the update Profile button only when , current user exits and id of current user mathes with id of currentUser which is LoggedIn()
+
+
+
+
+
+::::::::::::::::::::          DONE WITH FRONTEND PROJECT WITH REACT .js :::::::::::::::::::::::::
+
+______________________________________________________________________________________________
+
+
+Features of React used in Project :
+
+Infinte Scroll
+Pagenateion.
+
+
+
+
+Additional changes done by me : 
+
+-removed the disable tag from categories <Input >  in Add post.
+- i tried all possible way but could not remove the Image from the Input fild after submission of the form. value attribute is not working.
+- I tried to show the updated added post on the page of user using navigate  but its not working.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+******************************************************************************************************************************************************
+******************************************************************************************************************************************************
+******************************************************************************************************************************************************
+******************************************************************************************************************************************************
+******************************************************************************************************************************************************
+******************************************************************************************************************************************************
+
+
+
+BACKEND  ______________________________________________________________________________________________________________________________
+
+
+TO OPEN BACKEND API IN SWAGGER , start the project and then http://localhost:9292/swagger-ui/index.html
+
+Give the name to project and install dependecy likes spring web  ,  spring data jpa ,  springboot dev tools ,  lambok , mysql driver etc.
+
+-> Do not run the project now as springboot application , as database and entities are not configured presentlty.
+
+--> Temporarliy removed the lambok (later download the zar file of it and pasted in STS installed folder .)dependecy and var from pom.xml as server is not working.
+
+--> Refer to Diagam to create various packages and their respective entites required.
+
+--> HOw to eable auto-complete in STS/Eclipse Go to window-> preferences -> java -> Editor -> Coding assist and enter all the (alphabets) -> apply save and restart.
+
+-->To correct the problem of Lombok , uncommented the depedcy in pom.xml and update the maven project , and see whether the lombok file is dowloaded in the Maven dependecy folder or not.
+
+BASIC layout of Structure say that. 
+1.Declare the entity eg User
+2.Create Repo interface to access the database / also define customfinder methods
+3.Using Payload dto to send the data of entity to service in indirect form.
+4.Create Services interface ,  to give declaration of all methods like get, create, updatge, delete
+
+IMPORTANT : 
+--> To create the getters setter using the lambox we need to install the jar file of it and need to paste it STS folder. (Refer Video)
+Google  : lombok jar download ,  dowload the file
+Paste this lombok jar file where u have installed the STS and then run it on cmd.
+Open cmd from top path location and run the commad "java -jar lombox.jar" , then choose the icon of STS ide and install and quit and restart the STS IDe.
+
+
+If error comes in the getters/setter after intalling lambox jar file  , just maven update the project.
+
+___________________________________________
+
+
+Now u can generate token and access the protected api.
+
+______________________________________________
+
+SWAGGER API documentation.
+
+
+
+--> In order to use the validation , attach the maven dependecy of validation.
+
+
+__________________________________________
+
+Desinging the basic system of ENTITY , 
+--> then  SERVICES to declare the method of create,update,delete etc , 
+--> REPOSITORY to extend the JPA repo to provide all features. 
+--> Then IMPL Classes to give the implemetation of all the methods defined like create,update,delete etc using obj of Repo.
+
+We have used the Intemediate class UserDto  in payload package which has same property as Entity ,  this is done to protect the original entity exposing to extenal environment, like pass field of entity etc .
+
+-Also made the seperate Exception class to handle the condition when the user is not found . 
+-Made Api Response class to handle the message , after the deltion of the User.
+
+Also just give the annoation of @getter , @Setters etc to ease thec code . -feature of Lombok.
+
+_______________________________________________________________________________________________________________________
+
+Check all the made API on the POSTMAN
+
+POST request to  localhost:9090/api/users
+
+{
+ "name":"Vedansh Singh Rai",
+ "email":"vedanshrai586@gmail.com",
+ "password":"123",
+ "about":"Nice man for all time"
+}
+
+_______________________________________________________________________________________________________________________
+
+
+HOW TO CORRECT THE INTERNAL SERVER ERROR ,  when the unkown id is entered.
+
+-->
+Make a globalException class to handle all the exceptions of Resources Not Found.
+--> 
+Attaching the model mapper maven dependecy . from Google.
+-It is used to covert one class object to other class object.
+-We need to declare the bean for the Modelmapper in main class @SpringBootApplication ,  so we can create the object of it in UserService Impl.
+-For precaution just keep the fields name same in the Two classes User and UserDto
+
+put the validation on the fields of UserDta and add the @Valid   when passed in the fucntion to check for the validation.
+
+_______________________________________________________
+
+"BLOG APP Backend Course"
+"Video ONE good practice that makes your project best"
+
+Adding all the constants of the project in one App constants class". 
+NOw these final varaible can be used anywhere in the project , with classname.variable
+
+____________________________________
+Working on Post Image . 
+
+Just copied the code of FileService from other video (" to how to upload img")
+Also copy the max,min size of image file constants in application.properties (Refer video)
+
+
+__________________________
+
+Now we are done with all entities like user, post ,comment and their related classes.
+
+Appling Spring Security to the Application. 
+- Attach the spring boot starter security in pom.xml. So default username is user and password is default is on console. Now access any api with details on browser.
+  We can also create the manual user and password using the application.properties spring.security.user.name=durgesh spring.security.password=durgesh spring.security.roles=ADMIN
+
+-  Now using the Jwt Authentication to secure the RestFull Apis . 
+- Making a security config class , and extends the WebSecurityconfigureAdap  ter
+- Make the configuration of CustomUserDetailsImpl to validate the users from the database.
+
+____________________________________________________________________
+
+Now to secure the APi using JWT.
+-add dependency jsonwebtoken in pom.xml
+- create jwtauthenticationEntryPoint interface extends Au...
+- create jwtTokenHelper class.(copied from internet)
+-create JwtAuthentacationFilter extends OnceRequestFilter ( to get token validation attached with request)
+- crate jwtAuthResponse
+-configure JWT in spring security config.
+- create login api to generate token with given username and password.
+
+
+_____________________________________________________________
+
+Refer Role Specific API access video.
+
+TO protect any particular api , like delete User api can be accessed by Admin user only . 
+SO use
+
+@EnableGlobalMethodSecurity  in SecurityConfig class.
+
+and use @PreAuthorize("hasRole('ADMIN')")   on each protected method
+
+________________________________________-
+
+IN THIS PROJECT WE HAVE APPLIED THE SPRING SECURITY after making the whole project. 
+
+1.attach the dependecy of io.springfox-boot-starter in pom.xml
+2.@EnableWebMvc
+3.allow url using ant-matchers .antMatchers("/v3/api-docs")
+4.Also add the String[] Public URL in security Config class.
+
+Access swagger config using : http://localhost:9292/swagger-ui/index.html
+5.Make Swagger config class.
+
+
+-Modelmapper class is used to convert one class object to other class.Need to declare the bean in @Springbootapp class.
+ef  this.modelmapper.map(user,UserDto.class);
+
+
+
+-@RequestBody is used to send the json data from the Post man  { "username":"shiv" , ...}
+-@PathVariable is used to fetch the val from url   http:localhost:9292/api/user/2      , so userid=2
+-@RequestParam is used to send the values /images via POSTMAN to project eg used in PAGENATION to send pageNo, // USED In updalod image to Post  etc
+
+
+
+* One bug i found during test is that , the Delete/Update function is not secured from backend ,  Token of Normal user can also be used to detete the post of Admin/other user. And vice versa : THIs is although proteched from frontend ie update/detele button is only shown on posts which are created by the User itself not of the other Users.
+* We can't delete the user , after it has created post. may be issue with mapping.
+
+To view image of the post : Need to enter names of image from the database    asdf4545234dsd54fs6541[sdf]dsf][.png   : Try it in swagger url and open image with Web Borwser 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________________________________________________________________________________________________________________________________________________________________
+________________________________________________________________________________________________
+
+IMPORTANT GITHUB NOTES ::::::::::::::::
+________________________________________________________________________________________________
+
+
+
+Code to upload on github : 
+
+Create Repository on git hub and follow the instrction in this modified form.
+1.Go to main root project Folder.
+2.Open cmd / git Bash
+3.run this command:   echo "# Project_PhoneBook_Cloud_Springboot" >> README.md
+4.run this :   git init
+5.run this :   git add README.md
+6.run this :   git add .
+7.run this :   git status
+8.run this:    git commit -m "first commit"
+9.Skip this               command as we are adding in directly master branch //  git branch -M main
+10.run this:   git remote add origin https://github.com/Shivamrai714/Project_PhoneBook_Cloud_Springboot.git
+11.run this:   git push -u origin master
+
+
+TO OPEN BACKEND API IN SWAGGER , start the project and then http://localhost:9292/swagger-ui/index.html
+
+Give the name to project and install dependecy likes spring web  ,  spring data jpa ,  springboot dev tools ,  lambok , mysql driver etc.
+
+-> Do not run the project now as springboot application , as database and entities are not configured presentlty.
+
+--> Temporarliy removed the lambok (later download the zar file of it and pasted in STS installed folder .)dependecy and var from pom.xml as server is not working.
+
+--> Refer to Diagam to create various packages and their respective entites required.
+
+--> HOw to eable auto-complete in STS/Eclipse Go to window-> preferences -> java -> Editor -> Coding assist and enter all the (alphabets) -> apply save and restart.
+
+-->To correct the problem of Lombok , uncommented the depedcy in pom.xml and update the maven project , and see whether the lombok file is dowloaded in the Maven dependecy folder or not.
+
+BASIC layout of Structure say that. 
+1.Declare the entity eg User
+2.Create Repo interface to access the database / also define customfinder methods
+3.Using Payload dto to send the data of entity to service in indirect form.
+4.Create Services interface ,  to give declaration of all methods like get, create, updatge, delete
+
+IMPORTANT : 
+--> To create the getters setter using the lambox we need to install the jar file of it and need to paste it STS folder. (Refer Video)
+Google  : lombok jar download ,  dowload the file
+Paste this lombok jar file where u have installed the STS and then run it on cmd.
+Open cmd from top path location and run the commad "java -jar lombox.jar" , then choose the icon of STS ide and install and quit and restart the STS IDe.
+
+
+If error comes in the getters/setter after intalling lambox jar file  , just maven update the project.
+
+___________________________________________
+
+
+Now u can generate token and access the protected api.
+
+______________________________________________
+
+SWAGGER API documentation.
+
+
+
+--> In order to use the validation , attach the maven dependecy of validation.
+
+
+__________________________________________
+
+Desinging the basic system of ENTITY , 
+--> then  SERVICES to declare the method of create,update,delete etc , 
+--> REPOSITORY to extend the JPA repo to provide all features. 
+--> Then IMPL Classes to give the implemetation of all the methods defined like create,update,delete etc using obj of Repo.
+
+We have used the Intemediate class UserDto  in payload package which has same property as Entity ,  this is done to protect the original entity exposing to extenal environment, like pass field of entity etc .
+
+-Also made the seperate Exception class to handle the condition when the user is not found . 
+-Made Api Response class to handle the message , after the deltion of the User.
+
+Also just give the annoation of @getter , @Setters etc to ease thec code . -feature of Lombok.
+
+_______________________________________________________________________________________________________________________
+
+Check all the made API on the POSTMAN
+
+POST request to  localhost:9090/api/users
+
+{
+ "name":"Vedansh Singh Rai",
+ "email":"vedanshrai586@gmail.com",
+ "password":"123",
+ "about":"Nice man for all time"
+}
+
+_______________________________________________________________________________________________________________________
+
+
+HOW TO CORRECT THE INTERNAL SERVER ERROR ,  when the unkown id is entered.
+
+-->
+Make a globalException class to handle all the exceptions of Resources Not Found.
+--> 
+Attaching the model mapper maven dependecy . from Google.
+-It is used to covert one class object to other class object.
+-We need to declare the bean for the Modelmapper in main class @SpringBootApplication ,  so we can create the object of it in UserService Impl.
+-For precaution just keep the fields name same in the Two classes User and UserDto
+
+put the validation on the fields of UserDta and add the @Valid   when passed in the fucntion to check for the validation.
+
+_______________________________________________________
+
+"BLOG APP Backend Course"
+"Video ONE good practice that makes your project best"
+
+Adding all the constants of the project in one App constants class". 
+NOw these final varaible can be used anywhere in the project , with classname.variable
+
+____________________________________
+Working on Post Image . 
+
+Just copied the code of FileService from other video (" to how to upload img")
+Also copy the max,min size of image file constants in application.properties (Refer video)
+
+
+__________________________
+
+Now we are done with all entities like user, post ,comment and their related classes.
+
+Appling Spring Security to the Application. 
+- Attach the spring boot starter security in pom.xml. So default username is user and password is default is on console. Now access any api with details on browser.
+  We can also create the manual user and password using the application.properties spring.security.user.name=durgesh spring.security.password=durgesh spring.security.roles=ADMIN
+
+-  Now using the Jwt Authentication to secure the RestFull Apis . 
+- Making a security config class , and extends the WebSecurityconfigureAdap  ter
+- Make the configuration of CustomUserDetailsImpl to validate the users from the database.
+
+____________________________________________________________________
+
+Now to secure the APi using JWT.
+-add dependency jsonwebtoken in pom.xml
+- create jwtauthenticationEntryPoint interface extends Au...
+- create jwtTokenHelper class.(copied from internet)
+-create JwtAuthentacationFilter extends OnceRequestFilter ( to get token validation attached with request)
+- crate jwtAuthResponse
+-configure JWT in spring security config.
+- create login api to generate token with given username and password.
+
+
+_____________________________________________________________
+
+Refer Role Specific API access video.
+
+TO protect any particular api , like delete User api can be accessed by Admin user only . 
+SO use
+
+@EnableGlobalMethodSecurity  in SecurityConfig class.
+
+and use @PreAuthorize("hasRole('ADMIN')")   on each protected method
+
+________________________________________-
+
+IN THIS PROJECT WE HAVE APPLIED THE SPRING SECURITY after making the whole project. 
+
+1.attach the dependecy of io.springfox-boot-starter in pom.xml
+2.@EnableWebMvc
+3.allow url using ant-matchers .antMatchers("/v3/api-docs")
+4.Also add the String[] Public URL in security Config class.
+
+Access swagger config using : http://localhost:9292/swagger-ui/index.html
+5.Make Swagger config class.
+
+
+-Modelmapper class is used to convert one class object to other class.Need to declare the bean in @Springbootapp class.
+ef  this.modelmapper.map(user,UserDto.class);
+
+
+
+-@RequestBody is used to send the json data from the Post man  { "username":"shiv" , ...}
+-@PathVariable is used to fetch the val from url   http:localhost:9292/api/user/2      , so userid=2
+-@RequestParam is used to send the values /images via POSTMAN to project eg used in PAGENATION to send pageNo, // USED In updalod image to Post  etc
+
+
+
+* One bug i found during test is that , the Delete/Update function is not secured from backend ,  Token of Normal user can also be used to detete the post of Admin/other user. And vice versa : THIs is although proteched from frontend ie update/detele button is only shown on posts which are created by the User itself not of the other Users.
+* We can't delete the user , after it has created post. may be issue with mapping.
+
+To view image of the post : Need to enter names of image from the database    asdf4545234dsd54fs6541[sdf]dsf][.png   : Try it in swagger url and open image with Web Borwser 
